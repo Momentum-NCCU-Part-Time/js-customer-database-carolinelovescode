@@ -10,7 +10,8 @@ function customerCard(customer) {
     let customerCard = document.createElement('div'); // ^^^ set the function above a.k.a the loop ^^^
     let customerHeadshot = document.createElement('img');
     let customerName = document.createElement('h2');
-    let customerEmail = document.createElement('a');
+    let customerEmail = document.createElement('mailto');
+    let custEmailWrapper = document.createElement('li');
     let customerContact = document.createElement('ul');
     let customerAddress1 = document.createElement('li');
     let customerAddress2 = document.createElement('li')
@@ -37,18 +38,21 @@ function customerCard(customer) {
 
     // customerContact is the container for the list so you have to add the list elements to the container in ordrer for it to show up as such 
 
-    customerEmail.innerText = `${customer.email}`;
+
+    customerEmail.innerText = `${customer.email}`
     customerAddress1.innerText = `${customer.location.street.number} ${customer.location.street.name}`;
     customerAddress2.innerText = `${customer.location.city} ${nameToAbbr(customer.location.state)} ${customer.location.postcode}`
 
     customerCard.appendChild(customerContact);
     /*  Question: how can you get the list inside of the unordered list div 
          Answer: append information to that "container"   */
-    customerContact.appendChild(customerEmail);
+
+    customerContact.appendChild(custEmailWrapper);
+    custEmailWrapper.appendChild(customerEmail);
     customerContact.appendChild(customerAddress1);
     customerContact.appendChild(customerAddress2);
 
-    console.log(customerContact)
+
 
     customerEmail.classList.add('email');
     customerAddress1.classList.add('address-one');
